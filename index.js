@@ -1,6 +1,6 @@
 const question = [
   {
-    que: "Who is first Prsident if india?",
+    que: "Who is first Prsident of india in our Constitution?",
     a: "Neelam sanjiv reddy",
     b: "Rajendra Prasad",
     c: "Zakir Husen",
@@ -23,6 +23,22 @@ const question = [
     d: "Zarkhand",
     correct: "c",
   },
+  {
+    que: "Which is highest pick of Aravali Hills ?",
+    a: "Dhupgarh",
+    b: "Anarmkonda",
+    c: "Gurushikhar",
+    d: "Nanga mountain",
+    correct: "c",
+  },
+  {
+    que: "Which is River of following largest of Gujarat ?",
+    a: "Sabarmati",
+    b: "Narmada",
+    c: "Shetrunji",
+    d: "Mahi",
+    correct: "b"
+  }
 ];
 
 let index = 0;
@@ -39,7 +55,7 @@ function dataScript() {
     else{
         resetOption()
         let data = question[index];
-        mainQuestion.innerText = data.que;
+        mainQuestion.innerText = `(${index+1}) ${data.que}`;
         optionIn[0].nextElementSibling.innerText = data.a;
         optionIn[1].nextElementSibling.innerText = data.b;
         optionIn[2].nextElementSibling.innerText = data.c;
@@ -73,9 +89,27 @@ function resetOption(){
         input.checked=false;
       });
 }
+document.getElementById("next").onclick=function(e){
+  e.preventDefault()
+  index++;
+  dataScript();
+  if(index==(total-1)){
+    document.getElementById("next").innerText="End";
+  }
+}
+document.getElementById("prev").onclick=function(e){
+  e.preventDefault()
+  index--;
+  dataScript();
+  if(index!=(total-1)){
+    document.getElementById("next").innerHTML=`<span class="material-symbols-outlined">
+    arrow_forward
+    </span>`;
+  }
+}
 
 function endQuestion(){
     document.getElementById("content").innerHTML=`
-        <h3>Your Questions are finished and Score is ${right} Out of ${total} Question</h3>
+        <h3>Thank you your response Submitted...<br>Your Score is <u>${right} Out of ${total}</u> Question</h3>
     `;
 }
